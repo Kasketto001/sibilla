@@ -9,7 +9,8 @@ Cosa non c'è, cosa è fragile e cosa non è mai stato verificato. Tenere questa
 
 ## Mai verificato dal vivo
 
-- **OpenAI e Gemini non hanno mai completato una generazione.** Gli adattatori sono provati solo con client finti. Il rischio concreto: lo schema della spec, molto grande, potrebbe essere rifiutato o gestito male come schema di uno strumento.
+- **Gemini non ha mai completato una generazione.** L'adattatore è provato solo con un client finto. Il rischio concreto: lo schema della spec, molto grande, potrebbe essere rifiutato o gestito male come schema di uno strumento.
+- **OpenAI è provato poco**: con GPT-6.1 Sol hanno funzionato una domanda che richiede una query e una vista semplice. Mini app con collezioni, viste libere, modalità passo per passo e gli altri modelli GPT non sono stati provati.
 - I prezzi dei modelli Gemini non sono noti: per loro compaiono solo i token.
 - Diversi percorsi dell'interfaccia sono coperti solo dai test automatici, non da una prova a mano: il pulsante Ferma, il login completo, l'aggiunta e modifica di righe dalla schermata Database.
 

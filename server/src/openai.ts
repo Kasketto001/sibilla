@@ -39,6 +39,16 @@ function toInput(messages: Msg[]): ResponseInputItem[] {
   return out;
 }
 
+/**
+ * An output item as it can be sent back on the next turn. The SDK's stream helper adds parsed copies of what the model
+ * wrote (`parsed_arguments` on a tool call, `parsed` on text); the API refuses them as unknown parameters.
+ */
+function replayable(item: object): object {
+  const { parsed_arguments: _args, ...rest } = item as { parsed_arguments?: unknown; content?: unknown };
+  if (!Array.isArray(rest.content)) return rest;
+  return { ...rest, content: rest.content.map((part: object) => { const { parsed: _parsed, ...p } = part as { parsed?: unknown }; return p; }) };
+}
+
 const parse = (json: string): unknown => { try { return JSON.parse(json); } catch { return null; } }; // null fails tool validation: the model retries
 
 /** One model turn on OpenAI's Responses API, reported in the same shape as a Claude turn. */
@@ -75,7 +85,7 @@ export function makeOpenAIStep(client: OpenAI): LlmStep {
       }
     }
     const called = content.some((b) => b.type === "tool_use");
-    content.push({ type: STATE, provider: "openai", items: res.output });
+    content.push({ type: STATE, provider: "openai", items: res.output.map(replayable) });
     return {
       content, stopReason: refused ? "refusal" : called ? "tool_use" : res.status === "incomplete" ? "max_tokens" : "end_turn",
       ...(res.usage ? { usage: { input: res.usage.input_tokens, output: res.usage.output_tokens } } : {}),

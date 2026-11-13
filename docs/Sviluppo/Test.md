@@ -35,4 +35,4 @@ Un server su un database vuoto e senza login, e una seconda interfaccia che punt
 
 ## Cosa non è coperto
 
-I test non chiamano mai un modello vero: che un fornitore accetti gli strumenti e produca spec valide si verifica solo a mano. Vedi [Limiti](Limiti.md).
+I test non chiamano mai un modello vero: che un fornitore accetti gli strumenti e produca spec valide si verifica solo a mano. Vedi [Limiti](Limiti.md). Un esempio di cosa sfugge: il primo uso reale di GPT falliva al secondo turno perché l'SDK aggiungeva campi che l'API non accetta indietro.

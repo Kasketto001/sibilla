@@ -33,6 +33,7 @@ Sibilla in una frase: descrivi in chat l'interfaccia o la mini app che ti serve,
 - [Test](Sviluppo/Test.md): come si prova una modifica
 - [Decisioni](Sviluppo/Decisioni.md): le scelte di fondo e il loro perché
 - [Limiti](Sviluppo/Limiti.md): cosa manca e cosa non è stato verificato
+- [Da fare](Sviluppo/Todo.md): proposte su cosa aggiungere e come
 - [Glossario](Sviluppo/Glossario.md)
 
 ## Storia

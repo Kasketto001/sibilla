@@ -24,6 +24,8 @@ test("OpenAI: a turn is sent as Responses input and comes back as Claude-shaped 
     { type: "reasoning", id: "rs_1", summary: [{ type: "summary_text", text: "Devo contare." }], encrypted_content: "xyz" },
     { type: "function_call", id: "fc_1", call_id: "call_1", name: "esegui_query", arguments: '{"query":{"table":"ordini"}}' },
   ];
+  // What the SDK's stream helper hands back: the same items plus parsed copies the API won't take back.
+  const fromSdk = [output[0], { ...output[1], parsed_arguments: { query: { table: "ordini" } } }];
   const client = { responses: { stream: (params: Record<string, unknown>) => {
     sent.push(params);
     const handlers: Record<string, (e: unknown) => void> = {};
@@ -32,7 +34,7 @@ test("OpenAI: a turn is sent as Responses input and comes back as Claude-shaped 
       async finalResponse() {
         handlers["response.reasoning_summary_text.delta"]?.({ delta: "Devo contare." });
         handlers["response.output_item.added"]?.({ item: output[1] });
-        return { output, status: "completed" };
+        return { output: fromSdk, status: "completed" };
       },
     };
   } } } as unknown as OpenAI;
