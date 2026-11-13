@@ -22,12 +22,12 @@ export function Kpi({ node }: { node: NodeOf<"kpi"> }) {
   const { rows, error, loading } = useSpecQuery(node.query);
   const v = rows?.[0]?.[node.field];
   return (
-    <Card size="sm">
+    <Card size="sm" className="@container">
       <CardHeader>
         <CardDescription>{node.label}</CardDescription>
         {loading ? <Loading className="h-8" /> : error ? <NodeError message={error} /> :
           v === undefined || v === null ? <NoData /> :
-          <CardTitle className="font-heading text-3xl font-semibold tabular-nums">{formatValue(v, node.format)}</CardTitle>}
+          <CardTitle className="truncate font-heading text-xl font-semibold tabular-nums @[13rem]:text-2xl @[16rem]:text-3xl" title={formatValue(v, node.format)}>{formatValue(v, node.format)}</CardTitle>}
       </CardHeader>
     </Card>
   );
@@ -187,7 +187,7 @@ export function Filter({ node }: { node: NodeOf<"filter"> }) {
   const value = vars[node.variable];
   const id = `filter-${node.id}`;
   return (
-    <div className="flex min-w-48 flex-col gap-1.5">
+    <div className="flex min-w-0 flex-col gap-1.5">
       <Label htmlFor={id}>{node.label}</Label>
       {node.input === "select" ? <SelectFilter node={node} id={id} />
         : node.input === "date" ? (

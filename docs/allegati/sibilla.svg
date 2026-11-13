@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sibilla">
+  <!-- Sibilla's sphere: blurred colours turning slowly inside a glass ball. The same mark the app animates in CSS. -->
+  <defs>
+    <clipPath id="ball"><circle cx="32" cy="32" r="30"/></clipPath>
+    <filter id="blur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6.5"/></filter>
+    <radialGradient id="light" cx="32%" cy="26%" r="30%"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="rim" cx="50%" cy="50%" r="50%"><stop offset=".7" stop-color="#2a1c0c" stop-opacity="0"/><stop offset="1" stop-color="#2a1c0c" stop-opacity=".62"/></radialGradient>
+  </defs>
+  <g clip-path="url(#ball)">
+    <rect width="64" height="64" fill="#2a1c0c"/>
+    <g filter="url(#blur)">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 30 30" to="360 30 30" dur="18s" repeatCount="indefinite"/>
+        <circle cx="42" cy="16" r="20" fill="#f5c400"/>
+        <circle cx="48" cy="42" r="14" fill="#d98a1c"/>
+        <circle cx="12" cy="44" r="12" fill="#2a1c0c"/>
+      </g>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="360 36 34" to="0 36 34" dur="9s" repeatCount="indefinite"/>
+        <circle cx="16" cy="30" r="11" fill="#f3e6b8"/>
+        <circle cx="46" cy="56" r="9" fill="#4fb3c4"/>
+      </g>
+    </g>
+    <circle cx="32" cy="32" r="30" fill="url(#light)"/>
+    <circle cx="32" cy="32" r="30" fill="url(#rim)"/>
+  </g>
+</svg>

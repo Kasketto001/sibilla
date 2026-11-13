@@ -14,12 +14,12 @@ const VIEWS: Partial<Record<Node["type"], ComponentType<{ node: any }>>> = {
   kpi: Kpi, table: DataTable, chart: Chart, filter: Filter, dialog: DialogNode, form: FormNode, custom: CustomNode, link: LinkNode,
 };
 
-// Static strings so Tailwind generates them. Spans only apply from md up; on phones everything stacks.
-const SPAN = ["md:col-span-1", "md:col-span-2", "md:col-span-2 xl:col-span-3", "md:col-span-2 xl:col-span-4"];
+// Static strings so Tailwind generates them. Spans apply once the view is wide enough for columns; narrower, everything stacks.
+const SPAN = ["@lg:col-span-1", "@lg:col-span-2", "@lg:col-span-2 @xl:col-span-3", "@lg:col-span-2 @4xl:col-span-4"];
 
 // In a preview, nodes that need data or run code are placeholders of about the right height.
 const PLACEHOLDER: Partial<Record<Node["type"], string>> = {
-  kpi: "h-24", table: "h-64", chart: "h-72", form: "h-56", custom: "h-72", filter: "h-14 min-w-48", dialog: "h-9 w-36",
+  kpi: "h-24", table: "h-64", chart: "h-72", form: "h-56", custom: "h-72", filter: "h-14", dialog: "h-9 w-36",
 };
 
 export function NodeView({ node }: { node: Node }) {
@@ -59,5 +59,6 @@ export function Renderer({ spec, onAskFix, preview, onNavigate }: {
   const ctx: RenderCtx = { vars, setVar, refreshKey, refresh, childrenOf, onAskFix, data, collections, preview, navigate: preview ? undefined : onNavigate };
 
   const root = spec.nodes.find((n) => n.parentId === null);
-  return <Ctx.Provider value={ctx}>{root && <NodeView node={root} />}</Ctx.Provider>;
+  // The view is a container: grids inside it size their columns on its width.
+  return <Ctx.Provider value={ctx}><div className="@container">{root && <NodeView node={root} />}</div></Ctx.Provider>;
 }

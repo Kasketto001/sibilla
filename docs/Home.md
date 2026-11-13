@@ -5,6 +5,8 @@ aliases: [Indice, Sibilla]
 
 # Sibilla: base di conoscenza
 
+<img src="allegati/sibilla.svg" width="72" height="72" alt="La sfera di Sibilla">
+
 Tutto quello che serve per usare, capire e modificare Sibilla. Questa cartella è un vault di [Obsidian](https://obsidian.md) (*Apri cartella come vault* → `docs`); le note usano link Markdown normali, quindi si leggono anche su GitHub.
 
 Sibilla in una frase: descrivi in chat l'interfaccia o la mini app che ti serve, un modello ne scrive la descrizione in JSON (la [spec](Architettura/Spec.md)) e l'app la disegna, collegata ai dati veri.

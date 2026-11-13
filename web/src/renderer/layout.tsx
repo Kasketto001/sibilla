@@ -7,10 +7,11 @@ import { Markdown } from "../Markdown";
 import { useRender } from "./context";
 import { Children } from "./Renderer";
 
-const GRID = ["grid-cols-1", "grid-cols-1 md:grid-cols-2", "grid-cols-1 md:grid-cols-2 xl:grid-cols-3", "grid-cols-1 md:grid-cols-2 xl:grid-cols-4"];
+// Columns follow the width the view actually has (it shares the window with the sidebar and the chat), not the window's.
+const GRID = ["grid-cols-1", "grid-cols-1 @lg:grid-cols-2", "grid-cols-1 @lg:grid-cols-2 @xl:grid-cols-3", "grid-cols-1 @lg:grid-cols-2 @4xl:grid-cols-4"];
 
 export const Stack = ({ node }: { node: NodeOf<"stack"> }) => (
-  <div className={node.direction === "row" ? "flex flex-wrap items-start gap-4 [&>*]:min-w-0 [&>*]:flex-1" : "flex flex-col gap-6"}>
+  <div className={node.direction === "row" ? "flex flex-wrap items-start gap-4 [&>*]:min-w-44 [&>*]:flex-1" : "flex flex-col gap-6"}>
     <Children id={node.id} />
   </div>
 );
