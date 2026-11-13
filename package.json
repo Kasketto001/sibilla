@@ -1,0 +1,26 @@
+{
+  "name": "sibilla",
+  "version": "0.1.0",
+  "description": "Webapp generativa: descrivi l'interfaccia o la mini app che ti serve e un modello la costruisce sui tuoi dati.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "workspaces": [
+    "shared",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build -w web",
+    "start": "npm run start -w server",
+    "test": "vitest run",
+    "typecheck": "tsc -p shared --noEmit && tsc -p server --noEmit && tsc -p web/tsconfig.app.json --noEmit",
+    "lint": "npm run lint -w web"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

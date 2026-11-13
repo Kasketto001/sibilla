@@ -1,0 +1,23 @@
+node_modules
+dist
+.DS_Store
+*.log
+
+# Local data and secrets: never commit these
+.env
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.sibilla-secret
+.sibilla-libs
+
+# Tools
+.superpowers
+.playwright-mcp
+.taste-skill
+
+# Obsidian: the vault settings in docs/.obsidian/app.json are shared, the rest is per person
+docs/.obsidian/*
+!docs/.obsidian/app.json
+docs/.trash
